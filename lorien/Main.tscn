@@ -71,10 +71,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BrushColorPickerPopup/PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 309.0
-margin_bottom = 423.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 313.0
+margin_bottom = 427.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -105,10 +105,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="BackgroundColorPickerPopup/PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 314.001
-margin_bottom = 420.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 318.001
+margin_bottom = 424.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -133,10 +133,12 @@ margin_top = -216.5
 margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
+window_title = "Datei speichern"
 access = 2
 filters = PoolStringArray( "*.lorien" )
-current_dir = "/Users/mbrla/Projects/lorien/lorien"
-current_path = "/Users/mbrla/Projects/lorien/lorien/"
+show_hidden_files = true
+current_dir = "/home/modprog/Dokumente/Development/FOSS/GoDot/Lorien/lorien"
+current_path = "/home/modprog/Dokumente/Development/FOSS/GoDot/Lorien/lorien/"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -161,9 +163,11 @@ margin_top = -216.5
 margin_right = 385.0
 margin_bottom = 216.5
 theme = ExtResource( 8 )
+window_title = "Datei speichern"
 access = 2
-current_dir = "/Users/mbrla/Projects/lorien/lorien"
-current_path = "/Users/mbrla/Projects/lorien/lorien/"
+show_hidden_files = true
+current_dir = "/home/modprog/Dokumente/Development/FOSS/GoDot/Lorien/lorien"
+current_path = "/home/modprog/Dokumente/Development/FOSS/GoDot/Lorien/lorien/"
 
 [node name="UnsavedChangesDialog" parent="." instance=ExtResource( 7 )]
 visible = false
@@ -206,6 +210,7 @@ margin_top = -35.0
 margin_right = 68.5
 margin_bottom = 35.0
 theme = ExtResource( 8 )
+window_title = "Warnung!"
 dialog_text = "Generic message. "
 __meta__ = {
 "_edit_lock_": true

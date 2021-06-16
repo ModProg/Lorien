@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+
+[resource]
+ToolButton/constants/ContentSize = 24
+ToolButton/constants/Padding = 12
+ToolButton/constants/Size = 48
+ToolButton/styles/normal = SubResource( 1 )
