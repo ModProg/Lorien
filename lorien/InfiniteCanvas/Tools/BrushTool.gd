@@ -2,20 +2,18 @@ class_name BrushTool
 extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
-enum Mode {
-	DRAW,
-	ERASE
-}
+enum Mode { DRAW, ERASE }
 
 # -------------------------------------------------------------------------------------------------
 export var pressure_curve: Curve
 var mode: int = Mode.DRAW
 var _last_mouse_motion: InputEventMouseMotion
 
+
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
-	
+
 	if event is InputEventMouseMotion:
 		_last_mouse_motion = event
 		_cursor.global_position = xform_vector2(event.global_position)
@@ -28,8 +26,9 @@ func _input(event: InputEvent) -> void:
 				_last_mouse_motion.global_position = event.global_position
 				_last_mouse_motion.position = event.position
 				start_stroke(mode == Mode.ERASE)
-			elif !event.pressed:
+			elif ! event.pressed:
 				end_stroke()
+
 
 # -------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
@@ -39,7 +38,7 @@ func _process(delta: float) -> void:
 		pressure = pressure_curve.interpolate(pressure)
 		add_stroke_point(brush_position, pressure)
 		_last_mouse_motion = null
-		
+
 		# If the brush stroke gets too long, we make a new one. This is necessary because Godot limits the number
 		# of indices in a Line2D/Polygon
 		if get_current_brush_stroke().points.size() >= BrushStroke.MAX_POINTS:

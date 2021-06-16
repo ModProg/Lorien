@@ -11,26 +11,18 @@ enum Tool {
 }
 
 # -------------------------------------------------------------------------------------------------
-enum AAMode {
-	NONE,
-	OPENGL_HINT,
-	TEXTURE_FILL
-}
+enum AAMode { NONE, OPENGL_HINT, TEXTURE_FILL }
 
 # -------------------------------------------------------------------------------------------------
-enum UITheme {
-	DARK,
-	LIGHT
-}
+enum UITheme { DARK, LIGHT }
 
 # -------------------------------------------------------------------------------------------------
-enum ExportType {
-	PNG
-}
+enum ExportType { PNG }
+
 
 # -------------------------------------------------------------------------------------------------
 class CanvasInfo:
 	var point_count: int
 	var stroke_count: int
 	var current_pressure: float
-	var selected_lines : int
+	var selected_lines: int

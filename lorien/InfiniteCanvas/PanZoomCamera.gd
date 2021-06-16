@@ -15,26 +15,28 @@ var _is_input_enabled := true
 
 var _mouse_wheel_counter := 0
 
+
 # -------------------------------------------------------------------------------------------------
 func set_zoom_level(zoom_level: float) -> void:
 	_mouse_wheel_counter = 0
-	
-	if !is_equal_approx(zoom_level, 1.0):
+
+	if ! is_equal_approx(zoom_level, 1.0):
 		var wheel_direction := -1 if (zoom_level < 1.0) else 1
-		
+
 		while true:
 			_mouse_wheel_counter += wheel_direction
 			_current_zoom_level = 1.0 + _mouse_wheel_counter * _calc_zoom_increment()
-			
+
 			if wheel_direction < 0:
 				if _current_zoom_level <= zoom_level:
 					break
 			else:
 				if _current_zoom_level >= zoom_level:
 					break
-	
+
 	_current_zoom_level = zoom_level
 	zoom = Vector2(_current_zoom_level, _current_zoom_level)
+
 
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
@@ -53,10 +55,12 @@ func _input(event: InputEvent) -> void:
 			if _pan_active:
 				_do_pan(event.relative)
 
+
 # -------------------------------------------------------------------------------------------------
 func _do_pan(pan: Vector2) -> void:
 	offset -= pan * _current_zoom_level
 	emit_signal("position_changed", offset)
+
 
 # -------------------------------------------------------------------------------------------------
 func _do_zoom() -> void:
@@ -68,16 +72,17 @@ func _do_zoom() -> void:
 	elif _mouse_wheel_counter >= MAX_MOUSE_WHEEL_LEVEL:
 		_mouse_wheel_counter = MAX_MOUSE_WHEEL_LEVEL
 	_current_zoom_level = 1.0 + _mouse_wheel_counter * _calc_zoom_increment()
-	
+
 	if old_zoom == _current_zoom_level:
 		return
-	
+
 	var zoom_center = anchor - offset
-	var ratio = 1.0 - _current_zoom_level/old_zoom
+	var ratio = 1.0 - _current_zoom_level / old_zoom
 	offset += zoom_center * ratio
-	
+
 	zoom = Vector2(_current_zoom_level, _current_zoom_level)
 	emit_signal("zoom_changed", _current_zoom_level)
+
 
 # -------------------------------------------------------------------------------------------------
 func _calc_zoom_increment() -> float:
@@ -85,13 +90,16 @@ func _calc_zoom_increment() -> float:
 	progress /= (abs(MIN_MOUSE_WHEEL_LEVEL) + MAX_MOUSE_WHEEL_LEVEL)
 	return zoom_curve.interpolate(progress)
 
+
 # -------------------------------------------------------------------------------------------------
 func enable_intput() -> void:
 	_is_input_enabled = true
 
+
 # -------------------------------------------------------------------------------------------------
 func disable_intput() -> void:
 	_is_input_enabled = false
+
 
 # -------------------------------------------------------------------------------------------------
 func xform(pos: Vector2) -> Vector2:

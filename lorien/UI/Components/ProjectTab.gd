@@ -17,10 +17,12 @@ var is_active := false
 var title: String setget set_title
 var project_id: int
 
+
 # -------------------------------------------------------------------------------------------------
 func _ready():
 	set_active(false)
 	_filename_button.text = title
+
 
 # -------------------------------------------------------------------------------------------------
 func set_title(t: String) -> void:
@@ -28,13 +30,16 @@ func set_title(t: String) -> void:
 	if _filename_button != null:
 		_filename_button.text = title
 
+
 # -------------------------------------------------------------------------------------------------
 func _on_FilenameButton_pressed():
 	emit_signal("selected", self)
 
+
 # -------------------------------------------------------------------------------------------------
 func _on_CloseButton_pressed():
 	emit_signal("close_requested", self)
+
 
 # -------------------------------------------------------------------------------------------------
 func set_active(active: bool) -> void:
@@ -43,4 +48,3 @@ func set_active(active: bool) -> void:
 	if is_active:
 		new_style = STYLE_ACTIVE
 	set("custom_styles/panel", new_style)
-

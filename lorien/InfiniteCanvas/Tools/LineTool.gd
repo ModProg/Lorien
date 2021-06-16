@@ -2,7 +2,7 @@ class_name LineTool
 extends CanvasTool
 
 # -------------------------------------------------------------------------------------------------
-const SNAP_STEP := deg2rad(90.0 / 6.0) # = 15 deg
+const SNAP_STEP := deg2rad(90.0 / 6.0)  # = 15 deg
 
 # -------------------------------------------------------------------------------------------------
 export var pressure_curve: Curve
@@ -10,15 +10,16 @@ var _snapping_enabled := false
 var _head: Vector2
 var _tail: Vector2
 
+
 # -------------------------------------------------------------------------------------------------
 func _input(event: InputEvent) -> void:
 	_cursor.set_pressure(1.0)
-	
+
 	# Snap modifier
 	if event is InputEventKey:
 		if event.scancode == KEY_SHIFT:
 			_snapping_enabled = event.pressed
-	
+
 	# Moving the tail
 	elif event is InputEventMouseMotion:
 		_cursor.global_position = xform_vector2(event.global_position)
@@ -29,7 +30,7 @@ func _input(event: InputEvent) -> void:
 				_tail = _add_point_at_snap_pos(0.5)
 			else:
 				_tail = _add_point_at_mouse_pos(0.5)
-	
+
 	# Start + End
 	elif event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
@@ -37,8 +38,9 @@ func _input(event: InputEvent) -> void:
 				start_stroke(false)
 				_head = _add_point_at_mouse_pos(0.5)
 				_tail = _add_point_at_mouse_pos(0.5)
-			elif !event.pressed:
+			elif ! event.pressed:
 				end_stroke()
+
 
 # -------------------------------------------------------------------------------------------------
 func _add_point_at_mouse_pos(pressure: float) -> Vector2:
@@ -46,6 +48,7 @@ func _add_point_at_mouse_pos(pressure: float) -> Vector2:
 	pressure = pressure_curve.interpolate(pressure)
 	add_stroke_point(brush_position, pressure)
 	return brush_position
+
 
 # -------------------------------------------------------------------------------------------------
 func _add_point_at_snap_pos(pressure: float) -> Vector2:

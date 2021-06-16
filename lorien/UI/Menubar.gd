@@ -13,7 +13,8 @@ signal create_new_project
 onready var _file_tabs_container: HBoxContainer = $Left/Tabs
 export var _main_menu_path: NodePath
 var _active_file_tab: ProjectTab
-var _tabs_map: Dictionary # Dictonary<project_id, ProjectTab>
+var _tabs_map: Dictionary  # Dictonary<project_id, ProjectTab>
+
 
 # -------------------------------------------------------------------------------------------------
 func make_tab(project: Project) -> void:
@@ -25,9 +26,11 @@ func make_tab(project: Project) -> void:
 	_file_tabs_container.add_child(tab)
 	_tabs_map[project.id] = tab
 
+
 # ------------------------------------------------------------------------------------------------
 func has_tab(project: Project) -> bool:
 	return _tabs_map.has(project.id)
+
 
 # ------------------------------------------------------------------------------------------------
 func remove_tab(project: Project) -> void:
@@ -39,6 +42,7 @@ func remove_tab(project: Project) -> void:
 		_tabs_map.erase(project.id)
 		tab.call_deferred("free")
 
+
 # ------------------------------------------------------------------------------------------------
 func remove_all_tabs() -> void:
 	for project_id in _tabs_map.keys():
@@ -47,6 +51,7 @@ func remove_all_tabs() -> void:
 	_tabs_map.clear()
 	_active_file_tab = null
 
+
 # ------------------------------------------------------------------------------------------------
 func update_tab_title(project: Project) -> void:
 	if _tabs_map.has(project.id):
@@ -54,6 +59,7 @@ func update_tab_title(project: Project) -> void:
 		if project.dirty:
 			name += " (*)"
 		_tabs_map[project.id].title = name
+
 
 # ------------------------------------------------------------------------------------------------
 func set_tab_active(project: Project) -> void:
@@ -66,21 +72,26 @@ func set_tab_active(project: Project) -> void:
 	else:
 		print_debug("Project tab not found")
 
+
 # -------------------------------------------------------------------------------------------------
 func _on_tab_close_requested(tab: ProjectTab) -> void:
 	emit_signal("project_closed", tab.project_id)
+
 
 # -------------------------------------------------------------------------------------------------
 func _on_tab_selected(tab: ProjectTab) -> void:
 	emit_signal("project_selected", tab.project_id)
 
+
 # -------------------------------------------------------------------------------------------------
 func _on_NewFileButton_pressed():
-	 emit_signal("create_new_project")
+	emit_signal("create_new_project")
+
 
 # -------------------------------------------------------------------------------------------------
 func _on_MenuButton_pressed():
 	get_node(_main_menu_path).popup()
+
 
 # -------------------------------------------------------------------------------------------------
 func get_first_project_id() -> int:
