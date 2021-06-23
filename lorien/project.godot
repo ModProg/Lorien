@@ -54,10 +54,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Misc/Config.gd"
 }, {
+"base": "BaseButton",
+"class": "ExtendBaseButton",
+"language": "GDScript",
+"path": "res://Control.gd"
+}, {
 "base": "Reference",
 "class": "I18nParser",
 "language": "GDScript",
 "path": "res://Misc/I18nParser.gd"
+}, {
+"base": "Button",
+"class": "IconButton",
+"language": "GDScript",
+"path": "res://UI/Components/IconButton.gd"
 }, {
 "base": "ViewportContainer",
 "class": "InfiniteCanvas",
@@ -69,6 +79,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://InfiniteCanvas/InfiniteCanvasGrid.gd"
 }, {
+"base": "Reference",
+"class": "Layout",
+"language": "GDScript",
+"path": "res://UI/Themes/Layout.gd"
+}, {
 "base": "CanvasTool",
 "class": "LineTool",
 "language": "GDScript",
@@ -79,7 +94,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/MainMenu.gd"
 }, {
-"base": "Panel",
+"base": "PanelContainer",
 "class": "Menubar",
 "language": "GDScript",
 "path": "res://UI/Menubar.gd"
@@ -119,7 +134,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/Statusbar.gd"
 }, {
-"base": "Panel",
+"base": "PanelContainer",
 "class": "Toolbar",
 "language": "GDScript",
 "path": "res://UI/Toolbar.gd"
@@ -130,18 +145,21 @@ _global_script_classes=[ {
 "path": "res://Misc/Types.gd"
 } ]
 _global_script_class_icons={
-"BaseCursor": "res://Assets/Icons/cursor_icon.png",
+"BaseCursor": "res://Assets/Icons/Editor/cursor_icon.png",
 "BrushCursor": "",
 "BrushStroke": "",
 "BrushStrokeOptimizer": "",
 "BrushTool": "",
-"CanvasTool": "res://Assets/Icons/tools.png",
+"CanvasTool": "res://Assets/Icons/Editor/tools.png",
 "ColorPickerCursor": "",
 "ColorPickerTool": "",
 "Config": "",
+"ExtendBaseButton": "",
 "I18nParser": "",
+"IconButton": "res://Assets/Icons/Editor/icon_button.svg",
 "InfiniteCanvas": "",
 "InfiniteCanvasGrid": "",
+"Layout": "",
 "LineTool": "",
 "MainMenu": "",
 "Menubar": "",
@@ -189,6 +207,14 @@ window/size/test_width=1440
 window/size/test_height=810
 window/dpi/allow_hidpi=true
 window/vsync/use_vsync=false
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/editor_icon_previewer/plugin.cfg" )
+
+[global]
+
+touch=false
 
 [input]
 

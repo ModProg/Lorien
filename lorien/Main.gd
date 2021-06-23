@@ -3,11 +3,13 @@ extends Control
 const TARGET_FPS_FOREGROUND := 144
 const TARGET_FPS_BACKGROUND := 10
 
+export var size_theme: Theme
+
 # -------------------------------------------------------------------------------------------------
 onready var _canvas: InfiniteCanvas = $InfiniteCanvas
 onready var _statusbar: Statusbar = $Statusbar
-onready var _menubar: Menubar = $Menubar
-onready var _toolbar: Toolbar = $Toolbar
+onready var _menubar: Menubar = $Bars/Menubar
+onready var _toolbar: Toolbar = $Bars/Toolbar
 onready var _file_dialog: FileDialog = $FileDialog
 onready var _export_dialog: FileDialog = $ExportDialog
 onready var _about_dialog: WindowDialog = $AboutDialog
@@ -74,6 +76,10 @@ func _ready():
 	for arg in OS.get_cmdline_args():
 		if Utils.is_valid_lorien_file(arg):
 			_on_open_project(arg)
+
+	# Apply the sizes from the size_theme
+	if theme && size_theme:
+		Layout.apply_themes(theme, [Layout.scale_theme(size_theme.duplicate())])
 
 
 # -------------------------------------------------------------------------------------------------

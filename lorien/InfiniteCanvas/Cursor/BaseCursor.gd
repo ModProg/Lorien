@@ -1,4 +1,4 @@
-class_name BaseCursor, "res://Assets/Icons/cursor_icon.png"
+class_name BaseCursor, "res://Assets/Icons/Editor/cursor_icon.png"
 extends Sprite
 
 # -------------------------------------------------------------------------------------------------

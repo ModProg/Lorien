@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 class_name Menubar
 
 # -------------------------------------------------------------------------------------------------
@@ -98,3 +98,11 @@ func get_first_project_id() -> int:
 	if _file_tabs_container.get_child_count() == 0:
 		return -1
 	return _file_tabs_container.get_child(0).project_id
+
+
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_THEME_CHANGED:
+			var sb = get_stylebox("panel", "Menubar")
+			if sb != get_stylebox("panel"):
+				add_stylebox_override("panel", sb)

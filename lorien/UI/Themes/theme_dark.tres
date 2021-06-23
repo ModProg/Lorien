@@ -1,11 +1,27 @@
-[gd_resource type="Theme" load_steps=28 format=2]
+[gd_resource type="Theme" load_steps=46 format=2]
 
 [ext_resource path="res://Assets/Fonts/font_13.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/font_14b.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Assets/Icons/close.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Icons/arrow_right.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Icons/slider_knob_white.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Icons/color_picker_tool.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Icons/Material/new_file.svg" type="Texture" id=3]
+[ext_resource path="res://Assets/Icons/Material/line_tool.svg" type="Texture" id=4]
+[ext_resource path="res://Assets/Icons/Material/color_picker_tool.svg" type="Texture" id=5]
+[ext_resource path="res://Assets/Icons/Material/brush_tool.svg" type="Texture" id=6]
+[ext_resource path="res://Assets/Icons/Material/canvas_color.svg" type="Texture" id=7]
+[ext_resource path="res://Assets/Icons/Material/open_file.svg" type="Texture" id=8]
+[ext_resource path="res://Assets/Icons/Material/grid_off.svg" type="Texture" id=9]
+[ext_resource path="res://Assets/Icons/Material/undo.svg" type="Texture" id=10]
+[ext_resource path="res://Assets/Icons/Material/slider_knob.svg" type="Texture" id=11]
+[ext_resource path="res://Assets/Icons/Material/arrow_right.svg" type="Texture" id=12]
+[ext_resource path="res://Assets/Icons/Material/grid_on.svg" type="Texture" id=13]
+[ext_resource path="res://Assets/Icons/Material/eraser_tool.svg" type="Texture" id=14]
+[ext_resource path="res://Assets/Icons/Material/clear_canvas.svg" type="Texture" id=15]
+[ext_resource path="res://Assets/Icons/Material/selection_tool.svg" type="Texture" id=16]
+[ext_resource path="res://Assets/Icons/Material/save_file.svg" type="Texture" id=17]
+[ext_resource path="res://Assets/Icons/Material/close.svg" type="Texture" id=18]
+[ext_resource path="res://Assets/Icons/Material/redo.svg" type="Texture" id=19]
+[ext_resource path="res://Assets/Icons/Material/menu.svg" type="Texture" id=20]
+[ext_resource path="res://Assets/Icons/Material/add.svg" type="Texture" id=21]
+[ext_resource path="res://Assets/Icons/Material/close_small.svg" type="Texture" id=23]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 6.0
@@ -115,6 +131,9 @@ content_margin_top = 1.0
 bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 
 [sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.207843, 0.211765, 0.227451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=19]
 content_margin_left = 6.0
 content_margin_right = 6.0
 content_margin_top = 6.0
@@ -127,17 +146,23 @@ corner_radius_bottom_left = 6
 shadow_color = Color( 0, 0, 0, 0.317647 )
 shadow_size = 4
 
-[sub_resource type="StyleBoxFlat" id=19]
+[sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.12549, 0.129412, 0.141176, 1 )
 
-[sub_resource type="StyleBoxFlat" id=20]
+[sub_resource type="StyleBoxFlat" id=21]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 1, 1, 1, 0.2 )
 
-[sub_resource type="StyleBoxFlat" id=21]
+[sub_resource type="StyleBoxLine" id=22]
+color = Color( 0.619608, 0.619608, 0.619608, 1 )
+grow_begin = -5.0
+grow_end = -5.0
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id=23]
 content_margin_left = 8.0
 content_margin_right = 8.0
 content_margin_top = 8.0
@@ -153,7 +178,6 @@ shadow_color = Color( 0, 0, 0, 0.3 )
 shadow_size = 4
 
 [resource]
-default_font = ExtResource( 1 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
@@ -165,26 +189,39 @@ Button/styles/focus = SubResource( 2 )
 Button/styles/hover = SubResource( 2 )
 Button/styles/normal = SubResource( 3 )
 Button/styles/pressed = SubResource( 3 )
-ColorPicker/constants/h_width = 30
-ColorPicker/constants/label_width = 10
-ColorPicker/constants/margin = 4
-ColorPicker/constants/sv_height = 256
-ColorPicker/constants/sv_width = 256
-ColorPicker/icons/add_preset = null
-ColorPicker/icons/color_hue = null
-ColorPicker/icons/color_sample = null
-ColorPicker/icons/overbright_indicator = null
-ColorPicker/icons/preset_bg = null
-ColorPicker/icons/screen_picker = ExtResource( 6 )
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = SubResource( 4 )
-HSlider/icons/grabber = ExtResource( 5 )
+HSlider/icons/grabber = ExtResource( 11 )
 HSlider/icons/grabber_disabled = null
-HSlider/icons/grabber_highlight = ExtResource( 5 )
+HSlider/icons/grabber_highlight = ExtResource( 11 )
 HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource( 5 )
 HSlider/styles/grabber_area_highlight = SubResource( 5 )
 HSlider/styles/slider = SubResource( 6 )
+IconButton/colors/hover_tint = Color( 0.662745, 0.945098, 0.87451, 1 )
+IconButton/colors/normal_tint = Color( 1, 1, 1, 1 )
+IconButton/colors/pressed_tint = Color( 0.572549, 1, 0.894118, 1 )
+IconButton/constants/icon_size = 24
+IconButton/constants/size = 48
+IconButton/constants/small_icon_size = 12
+IconButton/constants/small_size = 24
+Icons/icons/add = ExtResource( 21 )
+Icons/icons/brush_tool = ExtResource( 6 )
+Icons/icons/canvas_color_tool = ExtResource( 7 )
+Icons/icons/clear_canvas = ExtResource( 15 )
+Icons/icons/close = ExtResource( 18 )
+Icons/icons/color_picker_tool = ExtResource( 5 )
+Icons/icons/eraser_tool = ExtResource( 14 )
+Icons/icons/grid_off = ExtResource( 9 )
+Icons/icons/grid_on = ExtResource( 13 )
+Icons/icons/line_tool = ExtResource( 4 )
+Icons/icons/menu = ExtResource( 20 )
+Icons/icons/new_file = ExtResource( 3 )
+Icons/icons/open_file = ExtResource( 8 )
+Icons/icons/redo = ExtResource( 19 )
+Icons/icons/save_file = ExtResource( 17 )
+Icons/icons/selection_tool = ExtResource( 16 )
+Icons/icons/undo = ExtResource( 10 )
 ItemList/colors/font_color = Color( 1, 1, 1, 1 )
 ItemList/colors/font_color_selected = Color( 1, 1, 1, 1 )
 ItemList/colors/guide_color = Color( 0, 0, 0, 0.1 )
@@ -221,6 +258,7 @@ LineEdit/icons/clear = null
 LineEdit/styles/focus = SubResource( 9 )
 LineEdit/styles/normal = SubResource( 10 )
 LineEdit/styles/read_only = null
+Menubar/styles/panel = SubResource( 11 )
 Panel/styles/panel = SubResource( 11 )
 PopupMenu/colors/font_color = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
@@ -233,7 +271,7 @@ PopupMenu/fonts/font = null
 PopupMenu/icons/checked = null
 PopupMenu/icons/radio_checked = null
 PopupMenu/icons/radio_unchecked = null
-PopupMenu/icons/submenu = ExtResource( 4 )
+PopupMenu/icons/submenu = ExtResource( 12 )
 PopupMenu/icons/unchecked = null
 PopupMenu/styles/hover = SubResource( 12 )
 PopupMenu/styles/labeled_separator_left = null
@@ -260,7 +298,9 @@ TabContainer/styles/panel = SubResource( 15 )
 TabContainer/styles/tab_bg = SubResource( 16 )
 TabContainer/styles/tab_disabled = null
 TabContainer/styles/tab_fg = SubResource( 17 )
-TooltipPanel/styles/panel = SubResource( 18 )
+Toolbar/styles/panel = SubResource( 18 )
+TooltipLabel/colors/font_color = Color( 1, 1, 1, 1 )
+TooltipPanel/styles/panel = SubResource( 19 )
 Tree/colors/custom_button_font_highlight = Color( 0.94, 0.94, 0.94, 1 )
 Tree/colors/drop_position_color = Color( 1, 0.3, 0.2, 1 )
 Tree/colors/font_color = Color( 1, 1, 1, 1 )
@@ -284,25 +324,26 @@ Tree/icons/checked = null
 Tree/icons/select_arrow = null
 Tree/icons/unchecked = null
 Tree/icons/updown = null
-Tree/styles/bg = SubResource( 19 )
-Tree/styles/bg_focus = SubResource( 19 )
+Tree/styles/bg = SubResource( 20 )
+Tree/styles/bg_focus = SubResource( 20 )
 Tree/styles/button_pressed = null
 Tree/styles/cursor = null
 Tree/styles/cursor_unfocused = null
 Tree/styles/custom_button = null
 Tree/styles/custom_button_hover = null
 Tree/styles/custom_button_pressed = null
-Tree/styles/selected = SubResource( 20 )
-Tree/styles/selected_focus = SubResource( 20 )
+Tree/styles/selected = SubResource( 21 )
+Tree/styles/selected_focus = SubResource( 21 )
 Tree/styles/title_button_hover = null
 Tree/styles/title_button_normal = null
 Tree/styles/title_button_pressed = null
+VSeparator/styles/separator = SubResource( 22 )
 WindowDialog/colors/title_color = Color( 1, 1, 1, 1 )
 WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
 WindowDialog/constants/scaleborder_size = 4
 WindowDialog/constants/title_height = 20
 WindowDialog/fonts/title_font = ExtResource( 2 )
-WindowDialog/icons/close = ExtResource( 3 )
-WindowDialog/icons/close_highlight = ExtResource( 3 )
-WindowDialog/styles/panel = SubResource( 21 )
+WindowDialog/icons/close = ExtResource( 23 )
+WindowDialog/icons/close_highlight = ExtResource( 23 )
+WindowDialog/styles/panel = SubResource( 23 )

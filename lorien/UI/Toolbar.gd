@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 class_name Toolbar
 
 signal new_project
@@ -23,27 +23,30 @@ export var file_dialog_path: NodePath
 export var brush_color_picker_path: NodePath
 export var background_color_picker_path: NodePath
 
-onready var _new_button: TextureButton = $Left/NewFileButton
-onready var _save_button: TextureButton = $Left/SaveFileButton
-onready var _open_button: TextureButton = $Left/OpenFileButton
-onready var _clear_canvas_button: TextureButton = $Left/ClearCanvasButton
-onready var _undo_button: TextureButton = $Left/UndoButton
-onready var _redo_button: TextureButton = $Left/RedoButton
-onready var _color_button: Button = $Left/ColorButton
-onready var _brush_size_label: Label = $Left/BrushSizeLabel
-onready var _brush_size_slider: HSlider = $Left/BrushSizeSlider
+onready var _new_button: IconButton = $HBox/Left/File/NewFileButton
+onready var _save_button: IconButton = $HBox/Left/File/SaveFileButton
+onready var _open_button: IconButton = $HBox/Left/File/OpenFileButton
+onready var _clear_canvas_button: IconButton = $HBox/Left/File/ClearCanvasButton
+onready var _undo_button: IconButton = $HBox/Left/UndoButton
+onready var _redo_button: IconButton = $HBox/Left/RedoButton
+onready var _color_button: Button = $HBox/Left/ColorButton
+onready var _brush_size_label: Label = $HBox/Left/BrushSizeLabel
+onready var _brush_size_slider: HSlider = $HBox/Left/BrushSizeSlider
 onready var _brush_color_picker: ColorPicker = get_node(brush_color_picker_path)
 onready var _brush_color_picker_popup: Popup = get_node(brush_color_picker_path).get_parent().get_parent()  # meh...
 onready var _background_color_picker: ColorPicker = get_node(background_color_picker_path)
 onready var _background_color_picker_popup: Popup = get_node(background_color_picker_path).get_parent().get_parent()  # meh...
-onready var _grid_button: TextureButton = $Right/GridButton
-onready var _tool_btn_brush: TextureButton = $Left/BrushToolButton
-onready var _tool_btn_line: TextureButton = $Left/LineToolButton
-onready var _tool_btn_eraser: TextureButton = $Left/EraserToolButton
-onready var _tool_btn_colorpicker: TextureButton = $Left/ColorPickerToolButton
-onready var _tool_btn_selection: TextureButton = $Left/SelectionToolButton
+onready var _grid_button: IconButton = $HBox/Right/GridButton
+onready var _background_color_button: IconButton = $HBox/Right/BackgroundColorButton
+onready var _tool_btn_brush: IconButton = $HBox/Left/BrushToolButton
+onready var _tool_btn_line: IconButton = $HBox/Left/LineToolButton
+onready var _tool_btn_eraser: IconButton = $HBox/Left/EraserToolButton
+onready var _tool_btn_colorpicker: IconButton = $HBox/Left/ColorPickerToolButton
+onready var _tool_btn_selection: Button = $HBox/Left/SelectionToolButton
 
-var _last_active_tool_button: TextureButton
+var _last_active_tool_button: IconButton
+var _size_mode: int = 0
+var _last_size: Vector2
 
 
 # -------------------------------------------------------------------------------------------------
@@ -62,8 +65,11 @@ func _ready():
 	_last_active_tool_button = _tool_btn_brush
 	_on_brush_color_changed(brush_color)
 
+	_brush_color_picker_popup.source = _color_button
+	_background_color_picker_popup.source = _background_color_button
 
-# Button clicked callbacks
+
+# IconButton clicked callbacks
 # -------------------------------------------------------------------------------------------------
 func _on_NewFileButton_pressed():
 	emit_signal("new_project")
@@ -83,7 +89,7 @@ func _on_RedoButton_pressed():
 
 # -------------------------------------------------------------------------------------------------
 func enable_tool(tool_type: int) -> void:
-	var btn: TextureButton
+	var btn: IconButton
 	match tool_type:
 		Types.Tool.BRUSH:
 			btn = _tool_btn_brush
@@ -197,7 +203,26 @@ func _on_GridButton_toggled(toggled: bool):
 
 
 # -------------------------------------------------------------------------------------------------
-func _change_active_tool_button(btn: TextureButton) -> void:
+func _change_active_tool_button(btn: IconButton) -> void:
 	if _last_active_tool_button != null:
 		_last_active_tool_button.toggle()
 	_last_active_tool_button = btn
+
+
+func _on_Toolbar_resized() -> void:
+	if get_minimum_size().x >= rect_size.x:
+		print(name + " at size " + str(_size_mode) + " is too big, increasing compactness")
+		_last_size = get_parent_area_size()
+		_size_mode += 1
+	elif _size_mode > 0 && get_parent_area_size().x > _last_size.x:
+		_last_size = get_parent_area_size()
+		_size_mode -= 1
+
+
+# -------------------------------------------------------------------------------------------------
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_THEME_CHANGED:
+			var sb = get_stylebox("panel", "Toolbar")
+			if sb != get_stylebox("panel"):
+				add_stylebox_override("panel", sb)

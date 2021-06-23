@@ -11,7 +11,7 @@ signal close_requested
 
 # -------------------------------------------------------------------------------------------------
 onready var _filename_button: Button = $HBoxContainer/FilenameButton
-onready var _close_button: TextureButton = $HBoxContainer/CloseButton
+onready var _close_button: IconButton = $HBoxContainer/CloseButton
 
 var is_active := false
 var title: String setget set_title
